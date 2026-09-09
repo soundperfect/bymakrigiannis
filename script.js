@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   calculateEstimate();
 });
 
+// Years Experience
+const currentYear = new Date().getFullYear();
+const years = currentYear - 1943;
+
+const years_classes = document.querySelectorAll('.year');
+years_classes.forEach((year) => {
+  year.textContent = years;
+});
+
 // Mobile navigation menu toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
