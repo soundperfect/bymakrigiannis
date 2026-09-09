@@ -66,7 +66,6 @@
         <nav class="hidden md:flex items-center space-x-8">
           <a href="#services" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Υπηρεσίες</a>
           <a href="#about" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Για Εμάς</a>
-          <a href="#estimator" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Εκτίμηση Κόστους</a>
           <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Επικοινωνία</a>
         </nav>
 
@@ -89,7 +88,6 @@
     <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3">
       <a href="#services" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Υπηρεσίες</a>
       <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Για Εμάς</a>
-      <a href="#estimator" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Εκτίμηση Κόστους</a>
       <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Επικοινωνία</a>
       <div class="pt-3 border-t border-slate-800 flex flex-col gap-3">
         <a href="tel:+302751020311" class="flex items-center justify-center py-2.5 rounded-lg border border-slate-700 text-white font-medium text-sm">
@@ -262,86 +260,6 @@
         <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
           <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
         </button>
-      </div>
-    </div>
-  </section>
-
-  <section id="estimator" class="py-20 bg-slate-900/60 border-y border-slate-800 carbon-mesh">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="bg-slate-900/95 border border-slate-700/80 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
-        <div class="text-center mb-8">
-          <span class="text-red-500 text-xs uppercase font-bold tracking-widest block mb-1">Άμεσος Υπολογισμός</span>
-          <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">Ενδεικτικός Υπολογιστής Κόστους Service</h2>
-          <p class="text-slate-400 text-sm mt-2">Επιλέξτε τις υπηρεσίες που χρειάζεται το όχημά σας για μια άμεση αρχική εκτίμηση.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Τύπος Οχήματος</label>
-            <select id="estVehicleType" onchange="calculateEstimate()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-red-500">
-              <option value="1.0">Επιβατικό (Μικρό / Supermini)</option>
-              <option value="1.15" selected>Μεσαίο / Hatchback / Sedan</option>
-              <option value="1.3">SUV / 4x4 / Crossover</option>
-              <option value="1.45">Επαγγελματικό / Van</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Κυβισμός Κινητήρα</label>
-            <select id="estEngineSize" onchange="calculateEstimate()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-red-500">
-              <option value="0">Έως 1.200 cc</option>
-              <option value="15" selected>1.300 cc - 1.800 cc (+15€)</option>
-              <option value="35">1.900 cc - 2.500 cc (+35€)</option>
-              <option value="55">Άνω των 2.500 cc (+55€)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Checkboxes for Services -->
-        <div class="mb-8">
-          <label class="block text-xs font-semibold text-slate-300 uppercase mb-3">Επιλέξτε Εργασίες</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvOil" value="65" onchange="calculateEstimate()" checked class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Βασικό Service (Λάδια &amp; Φίλτρο) <span class="text-red-400 font-bold ml-1">~65€</span></span>
-            </label>
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvFull" value="70" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Πλήρες Service (Όλα τα Φίλτρα + Μπουζί) <span class="text-red-400 font-bold ml-1">+70€</span></span>
-            </label>
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvBrakes" value="55" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Έλεγχος &amp; Αλλαγή Τακάκια Εμπρός <span class="text-red-400 font-bold ml-1">~55€</span></span>
-            </label>
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvAC" value="45" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Συντήρηση &amp; Φρέον A/C Clima <span class="text-red-400 font-bold ml-1">~45€</span></span>
-            </label>
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvDiag" value="30" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Ηλεκτρονική Διάγνωση Εγκεφάλου <span class="text-red-400 font-bold ml-1">~30€</span></span>
-            </label>
-            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
-              <input type="checkbox" id="srvKteo" value="25" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
-              <span class="ml-3 text-sm font-medium text-slate-200">Προέλεγχος ΚΤΕΟ &amp; ΚΕΚ <span class="text-red-400 font-bold ml-1">~25€</span></span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Live Estimate Output & Action -->
-        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <span class="text-xs uppercase tracking-wider text-slate-400 block">Εκτιμωμενο Ενδεικτικο Κοστος:</span>
-            <div class="flex items-baseline gap-2">
-              <span id="estimatedCostDisplay" class="font-heading font-black text-3xl sm:text-4xl text-red-500">92€</span>
-              <span class="text-xs text-slate-500">*περιλαμβάνει εργασία &amp; ΦΠΑ 24%</span>
-            </div>
-          </div>
-          <button onclick="openContactModal()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
-            <span>Καλέστε για επιβεβαίωση</span>
-            <i class="fa-solid fa-phone"></i>
-          </button>
-        </div>
       </div>
     </div>
   </section>
@@ -596,7 +514,6 @@
           <ul class="space-y-2 text-xs">
             <li><a href="#services" class="hover:text-red-400 transition">Όλες οι Υπηρεσίες</a></li>
             <li><a href="#about" class="hover:text-red-400 transition">Σχετικά με Εμάς</a></li>
-            <li><a href="#estimator" class="hover:text-red-400 transition">Εκτίμηση Κόστους</a></li>
           </ul>
         </div>
 
