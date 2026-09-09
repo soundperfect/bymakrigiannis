@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="el" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Συνεργείο Αυτοκινήτων Μακρυγιάννης | Auto Care & Service</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Montserrat & Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#dc2626',
+              rose: '#e11d48',
+              dark: '#0f172a',
+              slate: '#1e293b',
+              gray: '#334155'
+            }
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            sans: ['Noto Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden">
+
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 transition duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-red-600/30 group-hover:scale-105 transition-transform duration-200">
+            <i class="fa-solid fa-wrench"></i>
+          </div>
+          <div>
+            <span class="block font-heading font-black text-xl tracking-tight text-white uppercase group-hover:text-red-400 transition-colors">
+              SOUND PERFECT
+            </span>
+            <span class="block text-xs font-semibold uppercase tracking-wider text-red-500">
+              By MAKRIGIANNIS
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="#services" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Υπηρεσίες</a>
+          <a href="#about" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Για Εμάς</a>
+          <a href="#estimator" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Εκτίμηση Κόστους</a>
+          <a href="#reviews" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Κριτικές</a>
+          <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-red-400 transition-colors">Επικοινωνία</a>
+        </nav>
+
+        <!-- CTA Action Buttons -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <button onclick="openContactModal()" class="px-5 py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-sm shadow-lg shadow-red-600/30 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+            <i class="fa-solid fa-phone"></i>
+            <span>Τηλέφωνα Επικοινωνίας</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" aria-label="Άνοιγμα μενού" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition">
+          <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3">
+      <a href="#services" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Υπηρεσίες</a>
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Για Εμάς</a>
+      <a href="#estimator" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Εκτίμηση Κόστους</a>
+      <a href="#reviews" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Κριτικές</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800 hover:text-red-400">Επικοινωνία</a>
+      <div class="pt-3 border-t border-slate-800 flex flex-col gap-3">
+        <a href="tel:+302105550199" class="flex items-center justify-center py-2.5 rounded-lg border border-slate-700 text-white font-medium text-sm">
+          <i class="fa-solid fa-phone text-red-500 mr-2"></i> 275 102 0311
+        </a>
+        <button onclick="openContactModal()" class="w-full py-2.5 rounded-lg bg-red-600 text-white font-bold text-sm shadow-md">
+          Τηλέφωνα Επικοινωνίας
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative min-h-[90vh] flex items-center justify-center hero-pattern text-center px-4 py-24 sm:py-32">
+    <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-red-500/40 text-red-400 text-xs sm:text-sm font-semibold mb-6 badge-glow">
+        <i class="fa-solid fa-certificate text-red-400"></i>
+        <span>Εξειδικευμένο Συνεργείο Αυτοκινήτων από το 1998</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-tight sm:leading-none mb-6">
+        Απόλυτη Αξιοπιστία &amp; <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-500 to-red-600">
+          Κορυφαία Φροντίδα
+        </span>
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+        Στο συνεργείο <strong class="text-white">Μακρυγιάννης</strong> συνδυάζουμε εμπειρία 25+ ετών, τελευταίας γενιάς διαγνωστικά μηχανήματα και γνήσια ανταλλακτικά για την ασφάλειά σας σε κάθε χιλιόμετρο.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <button onclick="openContactModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-bold text-base shadow-xl shadow-red-600/30 transition transform hover:-translate-y-1 flex items-center justify-center gap-3">
+          <i class="fa-solid fa-phone"></i>
+          <span>Καλέστε μας για Ραντεβού</span>
+        </button>
+        <a href="#services" class="px-8 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition flex items-center justify-center gap-3 hover:border-slate-500">
+          <i class="fa-solid fa-gears text-red-400"></i>
+          <span>Δείτε τις Υπηρεσίες</span>
+        </a>
+      </div>
+
+      <!-- Quick Highlights Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-16 w-full pt-10 border-t border-slate-800/80">
+        <div class="text-center">
+          <p class="font-heading text-2xl sm:text-3xl font-extrabold text-red-500">25+</p>
+          <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Χρόνια Εμπειρίας</p>
+        </div>
+        <div class="text-center">
+          <p class="font-heading text-2xl sm:text-3xl font-extrabold text-red-500">12.000+</p>
+          <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Ευχαριστημένοι Πελάτες</p>
+        </div>
+        <div class="text-center">
+          <p class="font-heading text-2xl sm:text-3xl font-extrabold text-red-500">100%</p>
+          <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Εγγύηση Εργασιών</p>
+        </div>
+        <div class="text-center">
+          <p class="font-heading text-2xl sm:text-3xl font-extrabold text-red-500">OBD-II</p>
+          <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Σύγχρονη Διάγνωση</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-red-500 font-semibold tracking-wider uppercase text-sm block mb-2">Ολοκληρωμενες Λυσεις</span>
+      <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Εξειδικευμένες Υπηρεσίες</h2>
+      <p class="text-slate-400 mt-4 text-base sm:text-lg">
+        Καλύπτουμε κάθε τεχνική ανάγκη του αυτοκινήτου σας με υπευθυνότητα, ταχύτητα και καθαρές χρεώσεις χωρίς κρυφά κόστη.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Service 1 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-oil-can"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Γενικό Service &amp; Έλεγχος</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Αλλαγή λαδιών, φίλτρων (λαδιού, αέρα, καμπίνας, καυσίμου), μπουζί και ενδελεχής έλεγχος 40 κρίσιμων σημείων ασφαλείας.
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Ηλεκτρονικός Διαγνωστικός Έλεγχος</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Ανάγνωση και διαγραφή κωδικών βλαβών (DTCs), έλεγχος αισθητήρων, live data παραμέτρων και διάγνωση Check Engine.
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-car-burst"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Φρένα &amp; Αναρτήσεις</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Αντικατάσταση τακάκια, δισκόπλακες, υγρά φρένων, αμορτισέρ, ψαλίδια, μπαλάκια και ευθυγράμμιση συστήματος διεύθυνσης.
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Προετοιμασία ΚΤΕΟ &amp; ΚΕΚ</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Πλήρης προέλεγχος φωτισμού, καυσαερίων, φρένων και ανάρτησης. Δυνατότητα έκδοσης Κάρτας Ελέγχου Καυσαερίων (Κ.Ε.Κ.).
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Κλιματισμός (A/C &amp; Clima)</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Συμπλήρωση φρέον R134a &amp; R1234yf, έλεγχος διαρροών με υπεριώδη ακτινοβολία και αντιβακτηριδιακός καθαρισμός καμπίνας.
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Service 6 -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-600 group-hover:text-white transition-colors mb-6">
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3">Κινητήρας &amp; Κιβώτιο Ταχυτήτων</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Αλλαγή ιμάντα/αλυσίδας χρονισμού, δίσκου-πλατό, επισκευή κεφαλής, τουρμπίνες και γενική ανακατασκευή κινητήρων.
+          </p>
+        </div>
+        <button onclick="openContactModal()" class="text-red-400 hover:text-red-300 font-medium text-sm inline-flex items-center gap-2 group-hover:underline">
+          <span>Επικοινωνία για Service</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="estimator" class="py-20 bg-slate-900/60 border-y border-slate-800 carbon-mesh">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="bg-slate-900/95 border border-slate-700/80 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        <div class="text-center mb-8">
+          <span class="text-red-500 text-xs uppercase font-bold tracking-widest block mb-1">Άμεσος Υπολογισμός</span>
+          <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">Ενδεικτικός Υπολογιστής Κόστους Service</h2>
+          <p class="text-slate-400 text-sm mt-2">Επιλέξτε τις υπηρεσίες που χρειάζεται το όχημά σας για μια άμεση αρχική εκτίμηση.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Τύπος Οχήματος</label>
+            <select id="estVehicleType" onchange="calculateEstimate()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-red-500">
+              <option value="1.0">Επιβατικό (Μικρό / Supermini)</option>
+              <option value="1.15" selected>Μεσαίο / Hatchback / Sedan</option>
+              <option value="1.3">SUV / 4x4 / Crossover</option>
+              <option value="1.45">Επαγγελματικό / Van</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Κυβισμός Κινητήρα</label>
+            <select id="estEngineSize" onchange="calculateEstimate()" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 focus:outline-none focus:border-red-500">
+              <option value="0">Έως 1.200 cc</option>
+              <option value="15" selected>1.300 cc - 1.800 cc (+15€)</option>
+              <option value="35">1.900 cc - 2.500 cc (+35€)</option>
+              <option value="55">Άνω των 2.500 cc (+55€)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Checkboxes for Services -->
+        <div class="mb-8">
+          <label class="block text-xs font-semibold text-slate-300 uppercase mb-3">Επιλέξτε Εργασίες</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvOil" value="65" onchange="calculateEstimate()" checked class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Βασικό Service (Λάδια &amp; Φίλτρο) <span class="text-red-400 font-bold ml-1">~65€</span></span>
+            </label>
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvFull" value="70" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Πλήρες Service (Όλα τα Φίλτρα + Μπουζί) <span class="text-red-400 font-bold ml-1">+70€</span></span>
+            </label>
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvBrakes" value="55" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Έλεγχος &amp; Αλλαγή Τακάκια Εμπρός <span class="text-red-400 font-bold ml-1">~55€</span></span>
+            </label>
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvAC" value="45" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Συντήρηση &amp; Φρέον A/C Clima <span class="text-red-400 font-bold ml-1">~45€</span></span>
+            </label>
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvDiag" value="30" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Ηλεκτρονική Διάγνωση Εγκεφάλου <span class="text-red-400 font-bold ml-1">~30€</span></span>
+            </label>
+            <label class="flex items-center p-3.5 bg-slate-800/80 rounded-xl border border-slate-700/60 cursor-pointer hover:border-red-500/50 transition">
+              <input type="checkbox" id="srvKteo" value="25" onchange="calculateEstimate()" class="w-4 h-4 text-red-600 rounded focus:ring-0 bg-slate-900 border-slate-600">
+              <span class="ml-3 text-sm font-medium text-slate-200">Προέλεγχος ΚΤΕΟ &amp; ΚΕΚ <span class="text-red-400 font-bold ml-1">~25€</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Live Estimate Output & Action -->
+        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-slate-400 block">Εκτιμωμενο Ενδεικτικο Κοστος:</span>
+            <div class="flex items-baseline gap-2">
+              <span id="estimatedCostDisplay" class="font-heading font-black text-3xl sm:text-4xl text-red-500">92€</span>
+              <span class="text-xs text-slate-500">*περιλαμβάνει εργασία &amp; ΦΠΑ 24%</span>
+            </div>
+          </div>
+          <button onclick="openContactModal()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+            <span>Καλέστε για επιβεβαίωση</span>
+            <i class="fa-solid fa-phone"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-red-500 font-semibold tracking-wider uppercase text-sm block mb-2">Γιατι να μας εμπιστευτειτε</span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-snug mb-6">
+          25 Χρόνια Χτίζουμε Σχέσεις Εμπιστοσύνης και Ασφάλειας
+        </h2>
+        <p class="text-slate-300 text-base leading-relaxed mb-8">
+          Στο <strong class="text-white">Συνεργείο Μακρυγιάννης</strong>, δεν αλλάζουμε απλώς ανταλλακτικά. Ερευνούμε σε βάθος κάθε σύμπτωμα με εξειδικευμένα εργαλεία, εξηγούμε αναλυτικά την εργασία πριν ξεκινήσουμε και παραδίδουμε το όχημα στην ώρα του.
+        </p>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 mt-1">
+              <i class="fa-solid fa-shield-halved text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white text-base">Γνήσια &amp; OEM Πιστοποιημένα Ανταλλακτικά</h4>
+              <p class="text-slate-400 text-sm">Χρησιμοποιούμε μόνο ανταλλακτικά πρώτης τοποθέτησης συνοδευόμενα από γραπτή εγγύηση κατασκευαστή.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 mt-1">
+              <i class="fa-solid fa-file-invoice-dollar text-lg"></i>
+            </div>
+            <div>
+              <h4 class="font-heading font-bold text-white text-base">Διαφανείς Χρεώσεις Χωρίς Εκπλήξεις</h4>
+              <p class="text-slate-400 text-sm">Καμία πρόσθετη εργασία δεν εκτελείται χωρίς προηγούμενη τηλεφωνική σας έγκριση.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workshop Image Presentation with Stats Card -->
+      <div class="relative">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
+          <img src="https://images.unsplash.com/photo-1613214149922-f1809c99b414?auto=format&fit=crop&w=1200&q=80" alt="Συνεργείο Μακρυγιάννης Εσωτερικό" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/1e293b/dc2626?text=Makrygiannis+Garage'">
+        </div>
+        <!-- Floating badge -->
+        <div class="absolute -bottom-6 -left-6 bg-slate-900 border border-red-500/40 p-5 rounded-2xl shadow-2xl hidden sm:flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white text-2xl font-bold">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <div>
+            <p class="text-xs uppercase text-slate-400 font-semibold tracking-wider">Πιστοποίηση ISO</p>
+            <p class="text-white font-bold text-sm">Επίσημοι Τεχνικοί Ελέγχου</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="py-24 bg-slate-900/40 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="flex items-center justify-center gap-1 text-red-500 text-lg mb-2">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <span class="text-white font-bold text-base ml-2">4.9 / 5.0 (320+ Αξιολογήσεις)</span>
+        </div>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Τι Λένε οι Πελάτες μας</h2>
+        <p class="text-slate-400 mt-2 text-sm sm:text-base">Πραγματικές κριτικές οδηγών που μας εμπιστεύονται σταθερά τα αυτοκίνητά τους.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex text-red-500 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+              «Εξαιρετικός επαγγελματίας ο κ. Γιώργος Μακρυγιάννης. Είχα περίεργο θόρυβο στις αναρτήσεις που άλλοι δεν έβρισκαν. Το διέγνωσαν άμεσα, άλλαξαν μόνο ό,τι χρειαζόταν και σε απόλυτα λογική τιμή.»
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-full bg-slate-800 text-red-400 flex items-center justify-center font-bold text-sm">
+              ΝΠ
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Νίκος Παπαδόπουλος</p>
+              <p class="text-xs text-slate-500">VW Golf 1.4 TSI • Τακτικός Πελάτης</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex text-red-500 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+              «Ευγένεια, ταχύτητα και απόλυτη καθαριότητα στο συνεργείο. Έκανα το μεγάλο service και προετοιμασία για ΚΤΕΟ, το παρέλαβα πλυμένο και στην προκαθορισμένη ώρα. Τους συστήνω ανεπιφύλακτα!»
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-full bg-slate-800 text-red-400 flex items-center justify-center font-bold text-sm">
+              ΕΚ
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Ελένη Καραγιάννη</p>
+              <p class="text-xs text-slate-500">Toyota Yaris Hybrid • Ετήσιο Service</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex text-red-500 text-sm mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-slate-300 text-sm italic leading-relaxed mb-6">
+              «Ειλικρίνεια που σπάνια βρίσκεις πλέον σε συνεργεία. Με ενημέρωσαν αναλυτικά για το κόστος πριν ακουμπήσουν βίδα. Η διάγνωση της βλάβης στο κιβώτιο ήταν ακριβέστατη.»
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-full bg-slate-800 text-red-400 flex items-center justify-center font-bold text-sm">
+              ΔΜ
+            </div>
+            <div>
+              <p class="text-white font-semibold text-sm">Δημήτρης Μανώλης</p>
+              <p class="text-xs text-slate-500">BMW 320d • Επισκευή Μετάδοσης</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-red-500 font-semibold tracking-wider uppercase text-sm block mb-2">Επικοινωνια &amp; Τοποθεσια</span>
+      <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Επισκεφθείτε μας ή Καλέστε μας</h2>
+      <p class="text-slate-400 mt-3 text-base">Είμαστε δίπλα σας για οποιαδήποτε ερώτηση ή επείγον πρόβλημα του οχήματός σας.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Contact Details & Hours Card -->
+      <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+        <h3 class="font-heading font-bold text-xl text-white border-b border-slate-800 pb-4">
+          Στοιχεία Επικοινωνίας
+        </h3>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-slate-800 text-red-500 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 uppercase font-semibold">Διεύθυνση</p>
+              <p class="text-white font-medium text-sm">Ναυπλίου 196, Άργος</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-slate-800 text-red-500 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 uppercase font-semibold">Τηλέφωνα</p>
+              <a href="tel:+302105550199" class="text-white hover:text-red-400 font-medium text-sm block">275 102 0311</a>
+              <a href="tel:+306981234567" class="text-slate-400 hover:text-red-400 text-xs block">Κινητό: 694 729 8617</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-slate-800 text-red-500 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 uppercase font-semibold">Email</p>
+              <p class="text-white font-medium text-sm">soundperfect@outlook.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Working Hours Table -->
+        <div class="pt-4 border-t border-slate-800">
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fa-regular fa-clock text-red-500"></i> Ώρες Λειτουργίας
+          </h4>
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="flex justify-between py-1 border-b border-slate-800/60">
+              <span class="text-slate-400">Δευτέρα - Παρασκευή:</span>
+              <span class="text-white font-semibold">09:30 - 18:30</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-slate-400">Σάββατο &amp; Κυριακή:</span>
+              <span class="text-rose-500 font-semibold">Κλειστά</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency Banner -->
+        <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-4 flex items-center gap-4">
+          <div class="text-red-500 text-2xl">
+            <i class="fa-solid fa-truck-pickup"></i>
+          </div>
+          <div>
+            <p class="text-white font-bold text-xs uppercase">Οδική Βοήθεια &amp; Επείγοντα</p>
+            <p class="text-slate-300 text-xs">Συνεργασία με οδική βοήθεια για μεταφορά στο συνεργείο μας.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Google Maps Location Card -->
+        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden h-[460px] relative shadow-2xl flex flex-col group">
+            <!-- Live Google Map Embed με κεντραρισμένη και επιλεγμένη την επιχείρηση -->
+            <iframe 
+                src="https://maps.google.com/maps?q=Makrygiannis+Dimitrios,+Ναυπλίου+196,+Άργος&hl=el&z=16&output=embed" 
+                width="100%" 
+                height="100%" 
+                style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.1);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                class="w-full h-full">
+            </iframe>
+
+            <!-- Κάρτα πληροφοριών & Πλήκτρο Οδηγιών -->
+            <div class="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xl pointer-events-auto">
+                <div class="text-center sm:text-left">
+                <div class="flex items-center justify-center sm:justify-start gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                    <p class="text-white font-bold text-sm">SOUND PERFECT By MAKRIGIANNIS</p>
+                </div>
+                <p class="text-slate-400 text-xs mt-0.5">Ναυπλίου 196, Άργος</p>
+                </div>
+
+                <!-- Direct Navigation Button -->
+                <a href="https://maps.app.goo.gl/1vwqZNFD2Xozwtuk9" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-red-600/30 flex items-center gap-2 transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-diamond-turn-right text-xs"></i>
+                <span>Οδηγίες Google Maps</span>
+                </a>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Modal Τηλεφώνων Επικοινωνίας -->
+  <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="relative w-full max-w-md rounded-3xl bg-slate-900 border border-red-500/30 p-6 sm:p-8 shadow-2xl shadow-red-950/50 text-center">
+      
+      <!-- Close Button -->
+      <button onclick="closeContactModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <!-- Icon & Title -->
+      <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600/10 border border-red-500/20 text-red-500 text-2xl shadow-inner">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      
+      <h3 class="font-heading font-extrabold text-2xl text-white uppercase tracking-tight mb-2">
+        Επικοινωνια
+      </h3>
+      <p class="text-slate-400 text-xs sm:text-sm mb-6">
+        Καλέστε μας άμεσα για ραντεβού, πληροφορίες ή τεχνικές ερωτήσεις.
+      </p>
+
+      <!-- Phone Links -->
+      <div class="space-y-3.5">
+        <!-- Σταθερό Τηλέφωνο -->
+        <a href="tel:+302105550199" class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/90 border border-slate-700 hover:border-red-500 hover:bg-slate-800 transition-all text-white group">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-10 h-10 rounded-xl bg-red-600/15 flex items-center justify-center text-red-500 text-base group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
+              <i class="fa-solid fa-phone-flip"></i>
+            </div>
+            <div class="text-left">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Σταθερό</span>
+              <span class="text-sm sm:text-base font-bold text-white tracking-wide">275 102 0311</span>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-red-400 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            Κλήση <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+
+        <!-- Κινητό Τηλέφωνο -->
+        <a href="tel:+306981234567" class="flex items-center justify-between p-4 rounded-2xl bg-slate-800/90 border border-slate-700 hover:border-red-500 hover:bg-slate-800 transition-all text-white group">
+          <div class="flex items-center space-x-3.5">
+            <div class="w-10 h-10 rounded-xl bg-red-600/15 flex items-center justify-center text-red-500 text-base group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <div class="text-left">
+              <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Κινητό</span>
+              <span class="text-sm sm:text-base font-bold text-white tracking-wide">694 729 8617</span>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-red-400 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+            Κλήση <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </span>
+        </a>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-800/80">
+        <p class="text-xs text-slate-500">
+          <i class="fa-regular fa-clock mr-1 text-slate-400"></i> Δευ - Παρ: 09:30 - 18:30
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-slate-950 border-t border-slate-800 pt-16 pb-12 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-1">
+          <a href="#" class="flex items-center space-x-2 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-red-600 flex items-center justify-center text-white font-black">
+              <i class="fa-solid fa-wrench"></i>
+            </div>
+            <span class="font-heading font-black text-lg text-white uppercase">SOUND PERFECT</span>
+          </a>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Εξειδικευμένο συνεργείο αυτοκινήτων παντός τύπου By MAKRIGIANNIS. Προηγμένη διάγνωση, εγγύηση εργασιών και υπευθυνότητα από το 1998.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-4">Γρηγορη Πλοηγηση</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#services" class="hover:text-red-400 transition">Όλες οι Υπηρεσίες</a></li>
+            <li><a href="#about" class="hover:text-red-400 transition">Σχετικά με Εμάς</a></li>
+            <li><a href="#estimator" class="hover:text-red-400 transition">Εκτίμηση Κόστους</a></li>
+            <li><a href="#reviews" class="hover:text-red-400 transition">Αξιολογήσεις Πελατών</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-4">Ειδικευσεις</h4>
+          <ul class="space-y-2 text-xs text-slate-400">
+            <li>• Γερμανικά Οχήματα (VAG, BMW, Mercedes)</li>
+            <li>• Ιαπωνικά &amp; Κορεάτικα (Toyota, Hyundai, Kia)</li>
+            <li>• Γαλλικά &amp; Ιταλικά (Peugeot, Renault, Fiat)</li>
+            <li>• Υβριδικά &amp; Σύγχρονα Turbo Μοντέλα</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-white text-xs uppercase tracking-wider mb-4">Επικοινωνια</h4>
+          <p class="text-xs text-slate-400 mb-1">Ναυπλίου 196, Άργος</p>
+          <p class="text-xs text-slate-400 mb-1">Τηλ: 275 102 0311</p>
+          <p class="text-xs text-slate-400">Κιν: 694 729 8617</p>
+          <div class="flex space-x-3 mt-4">
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500/50 transition">
+              <i class="fa-brands fa-facebook-f text-xs"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500/50 transition">
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500/50 transition">
+              <i class="fa-brands fa-google text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-slate-900 text-center flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        <p>&copy; 2026 Συνεργείο Αυτοκινήτων SOUND PERFECT By MAKRIGIANNIS. Με επιφύλαξη παντός δικαιώματος.</p>
+        <p>Σχεδιασμένο με προδιαγραφές υψηλής ποιότητας &amp; ασφάλειας.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>
